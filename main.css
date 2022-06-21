@@ -6,7 +6,7 @@ html {
 }
 
 .container {
-    width: 650px;
+    width: 400px;
     height: auto;
     display: flex;
     place-items: center;
@@ -15,8 +15,17 @@ html {
     border-radius: 4px;
 }
 
-#random-cat {
-    max-width: 600px;
-    height: auto;
+.cat-container {
+    width: 390px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#random-cat1,#random-cat2{
+    max-width: 380px;
+    height: 280px;
     object-fit: cover;
 }
