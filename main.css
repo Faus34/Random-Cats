@@ -5,7 +5,7 @@ html {
     align-items: center;
 }
 
-.container {
+.container,.favorites {
     width: 400px;
     height: auto;
     display: flex;
@@ -13,11 +13,12 @@ html {
     flex-direction: column;
     background: papayawhip;
     border-radius: 4px;
+    margin: 10px auto;
 }
 
 .cat-container {
     width: 390px;
-    height: 600px;
+    height: 280px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,6 +27,6 @@ html {
 
 #random-cat1,#random-cat2{
     max-width: 380px;
-    height: 280px;
+    height: 250px;
     object-fit: cover;
 }
