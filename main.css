@@ -1,0 +1,22 @@
+html {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 650px;
+    height: auto;
+    display: flex;
+    place-items: center;
+    flex-direction: column;
+    background: papayawhip;
+    border-radius: 4px;
+}
+
+#random-cat {
+    max-width: 600px;
+    height: auto;
+    object-fit: cover;
+}
