@@ -1,6 +1,9 @@
 const URL = 'https://api.thecatapi.com/v1/images/search?limit=2&api_key=20ace127-d962-4106-b494-eb7122da9b7c';
 const URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites?api_key=20ace127-d962-4106-b494-eb7122da9b7c';
+const URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=20ace127-d962-4106-b494-eb7122da9b7c`;
 const spanError = document.getElementById('error');
+
+
 // fetch(URL)
 //     .then(response => response.json())
 //     .then(data => {
@@ -37,8 +40,14 @@ async function loadFavoriteMichis (){
     if(response.status !== 200){
         spanError.innerHTML = "Hubo un error" + response.status +data.message;
     }else {
+        const section =  document.getElementById('favorites');
+        section.innerHTML = "";
+        const h2 = document.createElement('h2');
+        const h2_text = document.createTextNode('Favorite cats');
+        h2.appendChild(h2_text);
+        section.appendChild(h2);
+
         data.forEach(michi => {
-            const section =  document.getElementById('favorites');
             const article = document.createElement('article');
             const img = document.createElement('img');
             const btn = document.createElement('button');
@@ -48,6 +57,7 @@ async function loadFavoriteMichis (){
             img.classList.add('fav-cat-img');
             article.classList.add('cat-container');
             btn.appendChild(btnTxt);
+            btn.onclick = () => deleteFavoriteMichis(michi.id);
             article.appendChild(img);
             article.appendChild(btn);
             section.appendChild(article);
@@ -69,23 +79,22 @@ async function saveFavoriteMichis (id){
     console.log(data);
     if(response.status !== 200){
         spanError.innerHTML = "Hubo un error" + response.status +data.message;
+    } else {
+        console.log('Michi guardado en favoritos');
+        loadFavoriteMichis();
     }
 }
 
 async function deleteFavoriteMichis (id){
-    const response = await fetch(URL_FAVORITES, {
-        method: 'POST',
-        headers: {
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify({
-            image_id: id
-        })
-    });
+    const response = await fetch(URL_FAVORITES_DELETE(id), {
+        method: 'DELETE'
+        });
     const data = await response.json();
-    console.log(data);
     if(response.status !== 200){
         spanError.innerHTML = "Hubo un error" + response.status +data.message;
+    } else {
+        console.log('Michi eliminado de favoritos')
+        loadFavoriteMichis();
     }
 }
 
