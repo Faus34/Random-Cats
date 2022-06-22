@@ -1,6 +1,6 @@
-const URL = 'https://api.thecatapi.com/v1/images/search?limit=2&api_key=20ace127-d962-4106-b494-eb7122da9b7c';
-const URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites?api_key=20ace127-d962-4106-b494-eb7122da9b7c';
-const URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}?api_key=20ace127-d962-4106-b494-eb7122da9b7c`;
+const URL = 'https://api.thecatapi.com/v1/images/search?limit=2';
+const URL_FAVORITES = 'https://api.thecatapi.com/v1/favourites';
+const URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`;
 const spanError = document.getElementById('error');
 
 
@@ -34,7 +34,12 @@ async function loadRandomMichis (){
 }
 
 async function loadFavoriteMichis (){
-    const response = await fetch(URL_FAVORITES);
+    const response = await fetch(URL_FAVORITES,{
+        method: 'GET',
+        headers: {
+            'X-API-KEY':'20ace127-d962-4106-b494-eb7122da9b7c'
+        }
+    });
     const data = await response.json();
 
     if(response.status !== 200){
@@ -69,7 +74,8 @@ async function saveFavoriteMichis (id){
     const response = await fetch(URL_FAVORITES, {
         method: 'POST',
         headers: {
-            'Content-Type':'application/json'
+            'Content-Type':'application/json',
+            'X-API-KEY':'20ace127-d962-4106-b494-eb7122da9b7c'
         },
         body: JSON.stringify({
             image_id: id
@@ -87,7 +93,10 @@ async function saveFavoriteMichis (id){
 
 async function deleteFavoriteMichis (id){
     const response = await fetch(URL_FAVORITES_DELETE(id), {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'X-API-KEY':'20ace127-d962-4106-b494-eb7122da9b7c'
+        }
         });
     const data = await response.json();
     if(response.status !== 200){
