@@ -5,12 +5,14 @@ html {
     align-items: center;
 }
 
-.container,.favorites {
+.container,#favorites {
     width: 400px;
     height: auto;
     display: flex;
     place-items: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     background: papayawhip;
     border-radius: 4px;
     margin: 10px auto;
@@ -25,7 +27,7 @@ html {
     justify-content: center;
 }
 
-#random-cat1,#random-cat2{
+#random-cat1,#random-cat2,.fav-cat-img{
     max-width: 380px;
     height: 250px;
     object-fit: cover;
